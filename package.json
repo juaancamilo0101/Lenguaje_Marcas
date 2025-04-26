@@ -1,0 +1,25 @@
+{
+  "name": "pagina_lenguaje_marcas",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000L\u0000e\u0000n\u0000g\u0000u\u0000a\u0000j\u0000e\u0000_\u0000M\u0000a\u0000r\u0000c\u0000a\u0000s\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juaancamilo0101/Lenguaje_Marcas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juaancamilo0101/Lenguaje_Marcas/issues"
+  },
+  "homepage": "https://github.com/juaancamilo0101/Lenguaje_Marcas#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^1.4.5-lts.2"
+  }
+}

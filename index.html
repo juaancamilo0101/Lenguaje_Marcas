@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Listado de Animales</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="public/css/estilos.css">
 </head>
 <body class="bg-light">
 
@@ -23,13 +23,13 @@
                 <a class="nav-link active" href="index.html">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="registrar.html">Registrar Animal</a>
+                <a class="nav-link" href="public/registrar.html">Registrar Animal</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="especies.html">Especies</a>
+                <a class="nav-link" href="public/especies.html">Especies</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="sobre.html">Sobre Nosotros</a>
+                <a class="nav-link" href="public/sobre.html">Sobre Nosotros</a>
               </li>
             </ul>
           </div>
@@ -46,16 +46,18 @@
         <table class="table table-striped table-hover align-middle text-center">
           <thead class="table-primary">
             <tr>
-              <th scope="col" rowspan="2" class="align-middle">Imagen</th>
-              <th scope="col" colspan="2">Información</th>
-            </tr>
-            <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Especie</th>
+              <th scope="col">Edad(Años)</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Tipo Aniaml</th>
+              <th scope="col">Hábitats</th>
+              <th scope="col">Color</th>
+              <th scope="col">Fecha de Nacimiento</th>
+              <th scope="col">Imagen</th>
             </tr>
           </thead>
-          <tbody id="tabla-animales">
-            <!-- Las filas de animales se insertarán aquí dinámicamente -->
+          <tbody id="tabla-animales">          
           </tbody>
         </table>
       </div>
@@ -67,8 +69,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/index.js"></script>
-
-
+  <script src="public/js/index.js"></script>
 </body>
 </html>
