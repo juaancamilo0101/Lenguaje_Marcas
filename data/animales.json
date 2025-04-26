@@ -63,5 +63,18 @@
     "color": "#bf2222",
     "fecha_nacimiento": "2025-04-15",
     "foto": "/img/1745673463884.jpg"
+  },
+  {
+    "nombre": "asdasd",
+    "especie": "Perro",
+    "edad": 15,
+    "descripcion": "asdsadsadsa",
+    "tipo": "Acuático",
+    "habitat": [
+      "Sabana"
+    ],
+    "color": "#000000",
+    "fecha_nacimiento": "2025-04-22",
+    "foto": "/img/1745673860092.jpg"
   }
 ]

@@ -1,30 +1,93 @@
-document.getElementById('formulario-animal').addEventListener('submit', function(event) {
+let especiesExistentes = [];
+
+window.onload = function() {
+  cargarEspecies();
+
+  const especieSelect = document.getElementById('especie-select');
+  especieSelect.addEventListener('change', function() {
+    const otraEspecieContainer = document.getElementById('otra-especie-container');
+    if (especieSelect.value === 'otro') {
+      otraEspecieContainer.style.display = 'block';
+      document.getElementById('otra-especie').setAttribute('required', 'required');
+    } else {
+      otraEspecieContainer.style.display = 'none';
+      document.getElementById('otra-especie').removeAttribute('required');
+    }
+  });
+
+  document.getElementById('formulario-animal').addEventListener('submit', function(event) {
     event.preventDefault();
-  
-    const formData = new FormData(this); // Crea un objeto FormData con los datos del formulario
-  
+
+    let especieSeleccionada = document.getElementById('especie-select').value;
+    let especieFinal = especieSeleccionada;
+
+    if (especieSeleccionada === 'otro') {
+      especieFinal = document.getElementById('otra-especie').value.trim();
+      if (!especieFinal) {
+        mostrarAlerta('Debes escribir una nueva especie.', 'danger');
+        return;
+      }
+      if (especiesExistentes.includes(especieFinal.toLowerCase())) {
+        mostrarAlerta('Esa especie ya existe. Selecciona una del listado.', 'warning');
+        return;
+      }
+    }
+
+    const formData = new FormData(this);
+    formData.set('especie', especieFinal); // Sobreescribir la especie final para enviar
+
     fetch('http://localhost:3000/registrar', {
       method: 'POST',
       body: formData
     })
     .then(response => {
-      // Verificar si la respuesta es exitosa
       if (!response.ok) {
         throw new Error('Error al registrar el animal');
       }
-      return response.json(); // Parsear la respuesta JSON
+      return response.json();
     })
     .then(data => {
-        console.log(data); // Verificar los datos que se reciben
-        const alertContainer = document.getElementById('alert-container');
-        alertContainer.innerHTML = `<div class="alert alert-success" role="alert">${data.mensaje}</div>`;
-        document.getElementById('formulario-animal').reset();
-      })
+      mostrarAlerta(data.mensaje, 'success');
+      document.getElementById('formulario-animal').reset();
+      document.getElementById('otra-especie-container').style.display = 'none';
+    })
     .catch(error => {
-      // Mostrar mensaje de error si algo falla
-      const alertContainer = document.getElementById('alert-container');
-      alertContainer.innerHTML = `<div class="alert alert-danger" role="alert">Error al registrar el animal: ${error.message}</div>`;
+      mostrarAlerta('Error al registrar el animal: ' + error.message, 'danger');
       console.error('Error al registrar el animal:', error);
     });
   });
-  
+};
+
+function cargarEspecies() {
+  fetch('http://localhost:3000/animales')
+    .then(response => response.json())
+    .then(animales => {
+      const especieSelect = document.getElementById('especie-select');
+      const especies = [...new Set(animales.map(animal => animal.especie))];
+
+      especiesExistentes = especies.map(e => e.toLowerCase());
+
+      especies.forEach(especie => {
+        const option = document.createElement('option');
+        option.value = especie;
+        option.textContent = especie;
+        especieSelect.appendChild(option);
+      });
+
+      const optionOtro = document.createElement('option');
+      optionOtro.value = 'otro';
+      optionOtro.textContent = 'Otro (Agregar nueva especie)';
+      especieSelect.appendChild(optionOtro);
+    })
+    .catch(error => {
+      console.error('Error al cargar especies:', error);
+    });
+}
+
+function mostrarAlerta(mensaje, tipo) {
+  const alertContainer = document.getElementById('alert-container');
+  alertContainer.innerHTML = `
+    <div class="alert alert-${tipo} mt-3" role="alert">
+      ${mensaje}
+    </div>`;
+}

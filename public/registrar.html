@@ -49,10 +49,20 @@
         </div>
 
         <div class="col-md-6">
-          <label for="especie" class="form-label">Especie</label>
-          <input type="text" id="especie" name="especie" class="form-control" maxlength="20" required>
-          <div class="invalid-feedback">Por favor ingresa la especie.</div>
+          <label for="especie-select" class="form-label">Especie</label>
+          <select id="especie-select" name="especie" class="form-select" required>
+            <option selected disabled>Seleccione una especie...</option>
+           
+          </select>
+          <div class="invalid-feedback">Por favor selecciona o ingresa una especie.</div>
         </div>
+        
+        <div class="col-md-6" id="otra-especie-container" style="display: none;">
+          <label for="otra-especie" class="form-label">Nueva Especie</label>
+          <input type="text" id="otra-especie" name="otra-especie" class="form-control" maxlength="20">
+          <div class="invalid-feedback">Escribe una nueva especie si seleccionaste "Otro".</div>
+        </div>
+        
 
         <div class="col-md-4">
           <label for="edad" class="form-label">Edad</label>
